@@ -88,37 +88,36 @@ public class LlmService {
 			return false;
 		}
 
-		try {
-			String prompt = """
-					You are a classifier that decides whether a short user reply is AFFIRMATIVE or NOT.
+        String prompt = """
+                You are a classifier that decides whether a short user reply is AFFIRMATIVE or NOT.
 
-					- AFFIRMATIVE means the user confirms, agrees, or wants to proceed
-					  (e.g. "yes", "yeah", "yep", "sure", "correct", "right", "agree",
-					  "proceed", "go ahead", "confirm", "confirmed", "alright",
-					  "ok", "okay", "fine", "sounds good", "that's fine", "i would like to proceed",
-					  "let's go", "looks good", "all good",
-					  "indeed", "exactly", "absolutely", "perfect", "that works", "works for me").
-					- NOT AFFIRMATIVE means the user disagrees, rejects, corrects, or wants a change
-					  (e.g. "no", "nope", "nah", "not really", "don't agree", "do not agree",
-					  "wrong", "change", "another", "different", "disagree", "stop",
-					  "cancel", "that's not", "isn't correct", "is not correct",
-					  "no, thanks", "no thanks", "rather not").
+                - AFFIRMATIVE means the user confirms, agrees, or wants to proceed
+                    (e.g. "yes", "yeah", "yep", "sure", "correct", "right", "agree",
+                    "proceed", "go ahead", "confirm", "confirmed", "alright",
+                    "ok", "okay", "fine", "sounds good", "that's fine", "i would like to proceed",
+                    "let's go", "looks good", "all good",
+                    "indeed", "exactly", "absolutely", "perfect", "that works", "works for me").
+                - NOT AFFIRMATIVE means the user disagrees, rejects, corrects, or wants a change
+                    (e.g. "no", "nope", "nah", "not really", "don't agree", "do not agree",
+                    "wrong", "change", "another", "different", "disagree", "stop",
+                    "cancel", "that's not", "isn't correct", "is not correct",
+                    "no, thanks", "no thanks", "rather not").
 
-					Respond ONLY with a JSON object in this exact format:
-					{ "affirmative": true }  or  { "affirmative": false }
+                Respond ONLY with a JSON object in this exact format:
+                { "affirmative": true }  or  { "affirmative": false }
 
-					User reply: "%s"
-					""".formatted(trimmedReply);
+                User reply: "%s"
+                """.formatted(trimmedReply);
 
-			String llmResponse = generateResponse(prompt);
-			JsonNode json = parseJsonResponse(llmResponse);
+        String llmResponse = generateResponse(prompt);
+        JsonNode json = parseJsonResponse(llmResponse);
 
-			if (json.has("affirmative")) {
-				return json.get("affirmative").asBoolean();
-			}
+        if (json.has("affirmative")) {
+            return json.get("affirmative").asBoolean();
+        }
 
-			// fallback
-			return false;
-		}
+        // fallback
+        return false;
+		
 	}
 }
