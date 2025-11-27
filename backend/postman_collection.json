@@ -1,0 +1,161 @@
+{
+  "info": {
+    "name": "SmartAllies Incident Reporting API",
+    "description": "API endpoints for testing the incident reporting chatbot backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "1. Initial Human Incident",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"test-session-123\",\n  \"message\": \"I'm experiencing harassment from my colleague. They keep making inappropriate comments.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    },
+    {
+      "name": "2. Confirm Classification",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"test-session-123\",\n  \"message\": \"Yes, that's correct\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    },
+    {
+      "name": "3. Agree to Draft Report",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"test-session-123\",\n  \"message\": \"Yes, help me report this\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    },
+    {
+      "name": "4. Provide Details",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"test-session-123\",\n  \"message\": \"It was John from accounting. This happened yesterday at 2pm in the cafeteria. He made inappropriate jokes about my appearance.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    },
+    {
+      "name": "Facility Incident - Broken Door",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"facility-session-456\",\n  \"message\": \"The door to the main conference room is broken and won't close properly\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    },
+    {
+      "name": "Emergency - Medical",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sessionId\": \"emergency-session-789\",\n  \"message\": \"Someone collapsed in the office! We need help immediately!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chat",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "chat"]
+        }
+      }
+    }
+  ]
+}
